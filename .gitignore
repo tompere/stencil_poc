@@ -27,3 +27,4 @@ UserInterfaceState.xcuserstate
 .vercel
 
 output/
+yarn.lock
