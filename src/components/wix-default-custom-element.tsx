@@ -10,7 +10,7 @@ export class AppRoot {
   render() {
     return (
       <div>
-        <h1>{`wham ${this.wham}`}</h1>
+        <h1>{`I say ${this.wham}`}</h1>
       </div>
     );
   }
