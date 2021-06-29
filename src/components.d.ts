@@ -15,6 +15,7 @@ export namespace Components {
     interface AppRoot {
     }
     interface WixDefaultCustomElement {
+        "wham": string;
     }
 }
 declare global {
@@ -58,6 +59,7 @@ declare namespace LocalJSX {
     interface AppRoot {
     }
     interface WixDefaultCustomElement {
+        "wham"?: string;
     }
     interface IntrinsicElements {
         "app-home": AppHome;
