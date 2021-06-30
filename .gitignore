@@ -30,3 +30,4 @@ output/
 src/stencil-dist
 yarn.lock
 package-lock.json
+code_*.js
