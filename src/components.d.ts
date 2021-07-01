@@ -6,34 +6,34 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface WixDefaultCustomElement {
+    interface MockCustomElement {
         "wham": string;
     }
 }
 declare global {
-    interface HTMLWixDefaultCustomElementElement extends Components.WixDefaultCustomElement, HTMLStencilElement {
+    interface HTMLMockCustomElementElement extends Components.MockCustomElement, HTMLStencilElement {
     }
-    var HTMLWixDefaultCustomElementElement: {
-        prototype: HTMLWixDefaultCustomElementElement;
-        new (): HTMLWixDefaultCustomElementElement;
+    var HTMLMockCustomElementElement: {
+        prototype: HTMLMockCustomElementElement;
+        new (): HTMLMockCustomElementElement;
     };
     interface HTMLElementTagNameMap {
-        "wix-default-custom-element": HTMLWixDefaultCustomElementElement;
+        "mock-custom-element": HTMLMockCustomElementElement;
     }
 }
 declare namespace LocalJSX {
-    interface WixDefaultCustomElement {
+    interface MockCustomElement {
         "wham"?: string;
     }
     interface IntrinsicElements {
-        "wix-default-custom-element": WixDefaultCustomElement;
+        "mock-custom-element": MockCustomElement;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "wix-default-custom-element": LocalJSX.WixDefaultCustomElement & JSXBase.HTMLAttributes<HTMLWixDefaultCustomElementElement>;
+            "mock-custom-element": LocalJSX.MockCustomElement & JSXBase.HTMLAttributes<HTMLMockCustomElementElement>;
         }
     }
 }

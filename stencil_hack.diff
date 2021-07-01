@@ -14,36 +14,30 @@
 > self.__stencil__.fetchRegisteredComponents = function() {
 >   return [].concat(self.__stencil__.registry)
 > }
-5306c5314,5339
+5306,5322c5314,5317
 < class AppRoot {
+<     constructor(hostRef) {
+<         registerInstance(this, hostRef);
+<     }
+<     render() {
+<         return (h("div", null, h("h1", null, `I say ${this.wham}`)));
+<     }
+<     static get cmpMeta() { return {
+<         "$flags$": 0,
+<         "$tagName$": "mock-custom-element",
+<         "$members$": {
+<             "wham": [1]
+<         },
+<         "$listeners$": undefined,
+<         "$lazyBundleId$": "-",
+<         "$attrsToReflect$": []
+<     }; }
 ---
 > 
 > __stencil__.internals = {
->   registerInstance: (...args) => this.registerInstance(...args),
+>   registerInstance: (...args) => registerInstance(...args),
 >   h: (...args) => h(...args),
-> }
-> 
-> // class AppRoot {
-> //     constructor(hostRef) {
-> //         registerInstance(this, hostRef);
-> //     }
-> //     render() {
-> //         return (h("div", null, h("h1", null, `I render ${this.wham}`)));
-> //     }
-> //     static get cmpMeta() { return {
-> //         "$flags$": 0,
-> //         "$tagName$": "tomp-custom-element",
-> //         "$members$": {
-> //             "wham": [1]
-> //         },
-> //         "$listeners$": undefined,
-> //         "$lazyBundleId$": "-",
-> //         "$attrsToReflect$": []
-> //     }; }
-> // }
-> 
-> class AppRoot$1 {
-5396,5463c5429,5496
+5396,5463c5391,5458
 < const createProviderConsumer = (defaultState, consumerRender) => {
 <     let listeners = new Map();
 <     let currentState = defaultState;
@@ -181,7 +175,7 @@
 >     titleSuffix: '',
 >     root: '/',
 >     routeViewsUpdated: () => { }
-5502,5997c5535,6030
+5502,5997c5497,5992
 < /**
 <  * TS adaption of https://github.com/pillarjs/path-to-regexp/blob/master/index.js
 <  */
@@ -1175,7 +1169,7 @@
 >         a.path === b.path &&
 >         a.url === b.url &&
 >         valueEqual(a.params, b.params);
-6114,6165c6147,6198
+6114,6165c6109,6160
 < const getConfirmation = (win, message, callback) => (callback(win.confirm(message)));
 < const isModifiedEvent = (ev) => (ev.metaKey || ev.altKey || ev.ctrlKey || ev.shiftKey);
 < /**
@@ -1281,7 +1275,7 @@
 >             // acknowledge QuotaExceededError only if there's something already stored
 >             storage.length !== 0;
 >     }
-6416,6970c6449,7003
+6416,6970c6411,6965
 < const warning = (value, ...args) => {
 <     if (!value) {
 <         console.warn(...args);
@@ -2393,15 +2387,15 @@
 >         win: win
 >     };
 >     return history;
-7131c7164
+7131c7126
 <   AppRoot,
 ---
 >   ...__stencil__.fetchRegisteredComponents(),
-7143c7176
+7143c7138
 < exports.hydrateApp = hydrateApp;
 ---
 > __stencil__.hydrateApp = hydrateApp;
-7897,7900c7930,7947
+7897,7900c7892,7910
 < exports.createWindowFromHtml = createWindowFromHtml;
 < exports.hydrateDocument = hydrateDocument;
 < exports.renderToString = renderToString;
@@ -2416,9 +2410,10 @@
 >   const tagName = `${CompClass.cmpMeta.$tagName$}`
 >   const attributes = Object.keys(CompClass.cmpMeta.$members$).map(k => `${k}="${`${props[k]}`}"`).join(' ')
 >   __stencil__.registry.push(CompClass);
-> 	const { html, diagnostics } = await __stencil__.renderToString(`<${tagName} ${attributes}></${tagName}>`);
+> 	const { html, diagnostics } = await __stencil__.renderToString(`<${tagName} ${attributes} ></${tagName}>`);
 >   if (html) {
->     return html;
+>     const [ extracted ] = html.match(new RegExp(`<${tagName}(.)+\/${tagName}>`,"gm"))
+>     return extracted;
 >   }
 >   const [ { messageText } ] = diagnostics
 >   throw new Error(messageText)

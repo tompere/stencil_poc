@@ -1,7 +1,7 @@
 import { Component, h, Prop } from '@stencil/core';
 
 @Component({
-  tag: 'wix-default-custom-element',
+  tag: 'mock-custom-element',
 })
 export class AppRoot {
 
