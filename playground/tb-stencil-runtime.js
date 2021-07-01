@@ -8,7 +8,7 @@ if (!srcFile) {
 }
 
 const ThunderboltStencilModule = (code) => `/* eslint-disable no-template-curly-in-string */
-import { IsolatePolyfill } from '../isolateNodeBridge'
+import { IsolatePolyfill } from './isolateNodeBridge'
 
 export const stencilRuntime: IsolatePolyfill = {
 	name: '__stencil__',

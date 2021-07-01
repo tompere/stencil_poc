@@ -1,9 +1,14 @@
 import { Component, h, Prop } from '@stencil/core';
+import { expose } from './expose';
 
 @Component({
-  tag: 'mock-custom-element',
+  tag: 'wix-default-custom-element',
 })
 export class AppRoot {
+
+  constructor() {
+    expose(AppRoot)
+  }
 
   @Prop() wham: string;
 
