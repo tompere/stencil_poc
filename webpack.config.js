@@ -13,7 +13,7 @@ module.exports = {
     new CopyPlugin({
       patterns: [
         { from: "./src/stencil-dist/server/index.js", to: "wixCustomElement.server.js" },
-        { from: "./src/stencil-dist/server/index.js", to: path.resolve(__dirname, 'api', "wixCustomElement.server.js") },
+        // { from: "./src/stencil-dist/server/index.js", to: path.resolve(__dirname, 'api', "wixCustomElement.server.js") },
       ],
     }),
   ],
