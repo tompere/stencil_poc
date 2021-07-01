@@ -13,14 +13,16 @@ import { IsolatePolyfill } from './isolateNodeBridge'
 export const stencilRuntime: IsolatePolyfill = {
 	name: '__stencil__',
 	// language=JavaScript
-	code: ${JSON.stringify(code)},
+	code: ${code},
 }
-` 
+`
+
+const id = (val) => val
 
 const srcContent = fs.readFileSync(path.resolve(srcFile)).toString()
 
 const f = path.resolve('.', `code_${Date.now()}.ts`)
-fs.outputFileSync(f, ThunderboltStencilModule(srcContent), 'utf8')
+fs.outputFileSync(f, ThunderboltStencilModule(JSON.stringify(srcContent)), 'utf8')
 
 console.log(`created file ${f}`)
 

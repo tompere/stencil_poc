@@ -2,12 +2,12 @@ import { Component, h, Prop } from '@stencil/core';
 import { expose } from './expose';
 
 @Component({
-  tag: 'wix-default-custom-element',
+  tag: 'foo-custom-element',
 })
-export class AppRoot {
+export class FooComp {
 
   constructor() {
-    expose(AppRoot)
+    expose(FooComp)
   }
 
   @Prop() wham: string;

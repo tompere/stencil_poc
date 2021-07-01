@@ -6,47 +6,47 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface MockCustomElement {
+    interface FooCustomElement {
         "wham": string;
     }
-    interface MockTrojan {
+    interface WixInternalHookComponent {
     }
 }
 declare global {
-    interface HTMLMockCustomElementElement extends Components.MockCustomElement, HTMLStencilElement {
+    interface HTMLFooCustomElementElement extends Components.FooCustomElement, HTMLStencilElement {
     }
-    var HTMLMockCustomElementElement: {
-        prototype: HTMLMockCustomElementElement;
-        new (): HTMLMockCustomElementElement;
+    var HTMLFooCustomElementElement: {
+        prototype: HTMLFooCustomElementElement;
+        new (): HTMLFooCustomElementElement;
     };
-    interface HTMLMockTrojanElement extends Components.MockTrojan, HTMLStencilElement {
+    interface HTMLWixInternalHookComponentElement extends Components.WixInternalHookComponent, HTMLStencilElement {
     }
-    var HTMLMockTrojanElement: {
-        prototype: HTMLMockTrojanElement;
-        new (): HTMLMockTrojanElement;
+    var HTMLWixInternalHookComponentElement: {
+        prototype: HTMLWixInternalHookComponentElement;
+        new (): HTMLWixInternalHookComponentElement;
     };
     interface HTMLElementTagNameMap {
-        "mock-custom-element": HTMLMockCustomElementElement;
-        "mock-trojan": HTMLMockTrojanElement;
+        "foo-custom-element": HTMLFooCustomElementElement;
+        "wix-internal-hook-component": HTMLWixInternalHookComponentElement;
     }
 }
 declare namespace LocalJSX {
-    interface MockCustomElement {
+    interface FooCustomElement {
         "wham"?: string;
     }
-    interface MockTrojan {
+    interface WixInternalHookComponent {
     }
     interface IntrinsicElements {
-        "mock-custom-element": MockCustomElement;
-        "mock-trojan": MockTrojan;
+        "foo-custom-element": FooCustomElement;
+        "wix-internal-hook-component": WixInternalHookComponent;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "mock-custom-element": LocalJSX.MockCustomElement & JSXBase.HTMLAttributes<HTMLMockCustomElementElement>;
-            "mock-trojan": LocalJSX.MockTrojan & JSXBase.HTMLAttributes<HTMLMockTrojanElement>;
+            "foo-custom-element": LocalJSX.FooCustomElement & JSXBase.HTMLAttributes<HTMLFooCustomElementElement>;
+            "wix-internal-hook-component": LocalJSX.WixInternalHookComponent & JSXBase.HTMLAttributes<HTMLWixInternalHookComponentElement>;
         }
     }
 }

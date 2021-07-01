@@ -4,9 +4,8 @@
   "version": "0.0.1",
   "description": "Stencil App Starter",
   "scripts": {
-    "build": "stencil build && yarn apply-hack && webpack",
-    "apply-hack": "#",
-    "build:cloud-bundler": "ts-node -T build/bundle.ts dist/wixCustomElement.server.js",
+    "build": "stencil build && yarn apply-patch && webpack",
+    "apply-patch": "node build/wix-patch",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",
     "test.watch": "stencil test --spec --e2e --watchAll",
