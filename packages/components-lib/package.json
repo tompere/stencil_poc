@@ -1,0 +1,13 @@
+{
+  "name": "byoc-components-lib",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "build": "stencil build && yarn apply-patch && webpack",
+    "apply-patch": "node build/wix-patch",
+    "start": "stencil build --dev --watch --serve",
+    "test": "stencil test --spec --e2e",
+    "test.watch": "stencil test --spec --e2e --watchAll",
+    "generate": "stencil generate"
+  }
+}

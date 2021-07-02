@@ -9,8 +9,6 @@ export namespace Components {
     interface FooCustomElement {
         "wham": string;
     }
-    interface WixInternalHookComponent {
-    }
 }
 declare global {
     interface HTMLFooCustomElementElement extends Components.FooCustomElement, HTMLStencilElement {
@@ -19,26 +17,16 @@ declare global {
         prototype: HTMLFooCustomElementElement;
         new (): HTMLFooCustomElementElement;
     };
-    interface HTMLWixInternalHookComponentElement extends Components.WixInternalHookComponent, HTMLStencilElement {
-    }
-    var HTMLWixInternalHookComponentElement: {
-        prototype: HTMLWixInternalHookComponentElement;
-        new (): HTMLWixInternalHookComponentElement;
-    };
     interface HTMLElementTagNameMap {
         "foo-custom-element": HTMLFooCustomElementElement;
-        "wix-internal-hook-component": HTMLWixInternalHookComponentElement;
     }
 }
 declare namespace LocalJSX {
     interface FooCustomElement {
         "wham"?: string;
     }
-    interface WixInternalHookComponent {
-    }
     interface IntrinsicElements {
         "foo-custom-element": FooCustomElement;
-        "wix-internal-hook-component": WixInternalHookComponent;
     }
 }
 export { LocalJSX as JSX };
@@ -46,7 +34,6 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "foo-custom-element": LocalJSX.FooCustomElement & JSXBase.HTMLAttributes<HTMLFooCustomElementElement>;
-            "wix-internal-hook-component": LocalJSX.WixInternalHookComponent & JSXBase.HTMLAttributes<HTMLWixInternalHookComponentElement>;
         }
     }
 }

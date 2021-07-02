@@ -1,20 +1,17 @@
 const path = require('path');
 const CopyPlugin = require("copy-webpack-plugin");
 
+const patterns = ['components-lib', 'ssr-runtime-lib'].map(package => (
+  {
+     from: path.resolve(__dirname, `packages/${package}/dist`),
+     to: path.resolve(__dirname, 'dist')
+  }
+))
+
 module.exports = {
-  entry: './src/customElement.client.js',
-  output: {
-    filename: 'wixCustomElement.client.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
-  target: 'webworker',
-  module: {},
   plugins: [
     new CopyPlugin({
-      patterns: [
-        { from: "./src/stencil-dist/server/index.js", to: "wixCustomElement.server.js" },
-        // { from: "./src/stencil-dist/server/index.js", to: path.resolve(__dirname, 'api', "wixCustomElement.server.js") },
-      ],
+      patterns,
     }),
   ],
 };

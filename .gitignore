@@ -26,8 +26,6 @@ UserInterfaceState.xcuserstate
 
 .vercel
 
-output/
-src/stencil-dist
 yarn.lock
 package-lock.json
 code_*.ts

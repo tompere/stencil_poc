@@ -1,0 +1,9 @@
+{
+  "name": "byoc-ssr-runtime-lib",
+  "private": true,
+  "version": "0.0.1",
+  "scripts": {
+    "build": "stencil build && yarn apply-patch && webpack",
+    "apply-patch": "node build/wix-patch"
+  }
+}
