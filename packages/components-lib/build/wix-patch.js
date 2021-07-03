@@ -13,7 +13,7 @@ async function readSnippet(name) {
   return fs.readFile(path.resolve(path.join(config.snippets_dir), `${name}.js`), {encoding: 'utf8'})
 }
 
-const writeFile = (fileName, content) => fs.outputFile(path.resolve('.', 'dist', fileName), content)
+const writeFile = (fileName, content) => fs.outputFile(path.resolve('.', 'src', 'wix-dist', fileName), content)
 
 async function generateComponentsClassesFile() {
   const classes = await Promise.all(config.components.map(async (tagName) => {
@@ -26,7 +26,7 @@ async function generateComponentsClassesFile() {
     }
   }));
   const internalAPIs = await readSnippet('internalAPIs');
-  return `(function() { ${internalAPIs}; return [${classes.map(c => `(${c})`).join(',')}] })()`;
+  return `export default function() { ${internalAPIs}; return [${classes.map(c => `(${c})`).join(',')}] }`;
 }
 
 async function main() {
