@@ -26,7 +26,6 @@ UserInterfaceState.xcuserstate
 
 .vercel
 
-yarn.lock
 package-lock.json
 code_*.ts
 code_*.js

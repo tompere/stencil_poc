@@ -1,3 +1,5 @@
 import { FooCustomElement } from '../stencil-dist/client'
 
-export default FooCustomElement
+if (!customElements.get(FooCustomElement.is)) {
+  customElements.define(FooCustomElement.is, FooCustomElement);
+}
