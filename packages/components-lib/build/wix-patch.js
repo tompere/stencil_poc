@@ -36,4 +36,7 @@ async function main() {
 
 const [,, type] = argv
 
-main(type).then(console.log)
+main(type).then(console.log).catch((err) => {
+  console.error(err)
+  process.exit(1) 
+})

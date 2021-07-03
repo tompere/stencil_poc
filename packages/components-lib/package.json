@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.1",
   "scripts": {
-    "build": "stencil build && yarn apply-patch && webpack",
+    "build": "stencil build && WIX_PATCH=true yarn apply-patch && webpack",
     "apply-patch": "node build/wix-patch",
     "start": "stencil build --dev --watch --serve",
     "test": "stencil test --spec --e2e",

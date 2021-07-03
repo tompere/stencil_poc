@@ -1,5 +1,6 @@
 const path = require('path');
 const globby = require('globby')
+const webpack = require('webpack')
 
 const entries = globby.sync('src/exports/*').reduce((acc, p) => {
   const {name} = path.parse(p)
@@ -16,5 +17,9 @@ module.exports = {
     path: path.resolve(__dirname, 'dist', 'components'),
   },
   mode: 'development',
-  plugins: [],
+  plugins: [
+    new webpack.EnvironmentPlugin({
+      WIX_PATCH: 'false',
+    })    
+  ],
 };
