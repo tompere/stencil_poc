@@ -1,4 +1,4 @@
-import { Component, h } from '@stencil/core';
+import { Component } from '@stencil/core';
 
 @Component({
   tag: 'wix-internal-hook-component',
@@ -6,11 +6,11 @@ import { Component, h } from '@stencil/core';
 export class InternalHookComponent {
   constructor() {
     // @ts-ignore
-    __stencil__.internals = {
+    global.__stencil__.internals = {
       // @ts-ignore
       registerInstance: (...args) => eval('(function(){ return registerInstance; })()')(...args),
       // @ts-ignore
-      h: (...args) => h(...args),
+      h: (...args) => eval('(function(){ return h; })()')(...args),
     }
   }
 

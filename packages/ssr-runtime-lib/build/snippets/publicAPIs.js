@@ -1,16 +1,16 @@
-__stencil__.initRuntime = async () => {
+global.__stencil__.initRuntime = async (CompClasses) => {
+  global.__stencil__.registry.push(...CompClasses);
   // initialize APIs, referenced from wix-internal-hook-component constructor 
-  await exports.renderToString('<wix-internal-hook-component></wix-internal-hook-component>')
+  return exports.renderToString('<wix-internal-hook-component></wix-internal-hook-component>')
 }
 
-__stencil__.renderComponentToString = async (CompClass, props) => {
+global.__stencil__.renderComponentToString = async (CompClass, props) => {
   const tagName = CompClass.cmpMeta.$tagName$ + ""
-  const attributes = Object.keys(CompClass.cmpMeta.$members$).map(k => `${k}="${`${props[k]}`}"`).join(' ')
+  const attributes = Object.keys(CompClass.cmpMeta.$members$).map(k => `${k}="${`${props[k]}`}"`).join(' ');
   const { html, diagnostics } = await exports.renderToString(`<${tagName} ${attributes} ></${tagName}>`);
-  if (html) {
+  if (html && diagnostics.length === 0) {
     const [ extracted ] = html.match(new RegExp(`<${tagName}(.)+\/${tagName}>`,"gm"))
     return extracted;
   }
-  const [ { messageText } ] = diagnostics
-  throw new Error(messageText)
+  throw new Error(JSON.stringify(diagnostics))
 }

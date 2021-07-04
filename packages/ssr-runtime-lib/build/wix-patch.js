@@ -33,7 +33,7 @@ async function joinCode(arr) {
 async function generateStencilRuntimeFile() {
   let src = await fs.readFile(path.resolve(config.stencil_server_bundle), { encoding: 'utf8' })
   const hook = `${config.internal_hook_className},`
-  src = src.replace(hook,`${hook}...__stencil__.fetchRegisteredComponents(),`)
+  src = src.replace(hook,`${hook}...global.__stencil__.fetchRegisteredComponents(),`)
   return await joinCode([
     { snippet: 'top'},
     src,
