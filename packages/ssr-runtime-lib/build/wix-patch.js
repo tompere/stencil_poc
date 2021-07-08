@@ -6,7 +6,7 @@ const config = {
   stencil_server_bundle: './src/stencil-dist/server/index.js',
   snippets_dir: './build/snippets',
   stencil_runtime_bundle_name: 'ssr-stencil-runtime.js',
-  internal_hook_className: 'InternalHookComponent',
+  internal_hook_className: '__WixInternalHook__',
 }
 
 async function readSnippet(name) {
@@ -33,7 +33,18 @@ async function joinCode(arr) {
 async function generateStencilRuntimeFile() {
   let src = await fs.readFile(path.resolve(config.stencil_server_bundle), { encoding: 'utf8' })
   const hook = `${config.internal_hook_className},`
-  src = src.replace(hook,`${hook}...global.__stencil__.fetchRegisteredComponents(),`)
+  const initCode = `
+  ...((() => {
+    // global.__stencil__.internals = ['registerInstance', 'h'].reduce((acc, f) => {
+    //   // acc[f] = (...args) => eval(\`(() => \$\{f\})()\`)(...args);
+    //   return acc;
+    // }, {});
+    global.__stencil__.internals.registerInstance = (...args) => registerInstance(...args);
+    global.__stencil__.internals.h = (...args) => h(...args);
+    return [].concat(global.__stencil__.registry);
+  })())
+  `
+  src = src.replace(hook,`${initCode},`)
   return await joinCode([
     { snippet: 'top'},
     src,
