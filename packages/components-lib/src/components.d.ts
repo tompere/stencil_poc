@@ -6,34 +6,34 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
-    interface FooCustomElement {
+    interface FooCustomElementClient {
         "wham": string;
     }
 }
 declare global {
-    interface HTMLFooCustomElementElement extends Components.FooCustomElement, HTMLStencilElement {
+    interface HTMLFooCustomElementClientElement extends Components.FooCustomElementClient, HTMLStencilElement {
     }
-    var HTMLFooCustomElementElement: {
-        prototype: HTMLFooCustomElementElement;
-        new (): HTMLFooCustomElementElement;
+    var HTMLFooCustomElementClientElement: {
+        prototype: HTMLFooCustomElementClientElement;
+        new (): HTMLFooCustomElementClientElement;
     };
     interface HTMLElementTagNameMap {
-        "foo-custom-element": HTMLFooCustomElementElement;
+        "foo-custom-element-client": HTMLFooCustomElementClientElement;
     }
 }
 declare namespace LocalJSX {
-    interface FooCustomElement {
+    interface FooCustomElementClient {
         "wham"?: string;
     }
     interface IntrinsicElements {
-        "foo-custom-element": FooCustomElement;
+        "foo-custom-element-client": FooCustomElementClient;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
-            "foo-custom-element": LocalJSX.FooCustomElement & JSXBase.HTMLAttributes<HTMLFooCustomElementElement>;
+            "foo-custom-element-client": LocalJSX.FooCustomElementClient & JSXBase.HTMLAttributes<HTMLFooCustomElementClientElement>;
         }
     }
 }

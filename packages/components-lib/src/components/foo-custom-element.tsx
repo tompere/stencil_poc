@@ -2,7 +2,7 @@ import { Component, h, Prop } from '@stencil/core';
 import { expose } from './expose';
 
 @Component({
-  tag: 'foo-custom-element',
+  tag: 'foo-custom-element-client',
 })
 export class FooComp {
 

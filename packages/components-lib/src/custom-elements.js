@@ -1,4 +1,4 @@
 module.exports = [
-  'foo-custom-element',
+  'foo-custom-element-client',
   // 'bar-custom-element'
 ]
